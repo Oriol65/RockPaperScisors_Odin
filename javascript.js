@@ -1,7 +1,9 @@
 // Rock Paper Scissors
     //console.log("Hello World") STEP 1 DONE
 // INPUT one of three choices STEP 3
+let getHumanChoice = prompt("Choose Rock, Paper, Scissors: ")
     // Case Insensitive
+console.log(getHumanChoice)
     // Error if something else chosen, Write again
 // PC picks one of three random choices STEP 2
     // Random Number 0-1
@@ -17,7 +19,7 @@ if (randNum < 0.33) {
 } else {
     getComputerChoice = "Scissors"
 }
-console.log(getComputerChoice)
+//console.log(getComputerChoice)
 // Compare results STEP 5
     // Tie Scenario
     // Win Scenario
