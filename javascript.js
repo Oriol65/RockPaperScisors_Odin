@@ -2,9 +2,8 @@
     //console.log("Hello World") STEP 1 DONE
 // INPUT one of three choices STEP 3
 let getHumanChoice = prompt("Choose Rock, Paper, Scissors: ")
-    // Case Insensitive
 console.log(getHumanChoice)
-    // Error if something else chosen, Write again
+
 // PC picks one of three random choices STEP 2
     // Random Number 0-1
         // Create variable to store random number from 0-1
@@ -25,4 +24,8 @@ if (randNum < 0.33) {
     // Win Scenario
     // Lose Scenario
 // DECLARE scores STEP 4
-// FOR loop for 5 rounds
+    // Variable for human score
+let humanScore = 0;
+    // Variable for computer score
+let computerScore = 0;
+    // FOR loop for 5 rounds
