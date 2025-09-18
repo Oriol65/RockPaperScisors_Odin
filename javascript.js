@@ -1,49 +1,38 @@
-// Rock Paper Scissors
-    //console.log("Hello World") STEP 1 DONE
-// Compare results STEP 5
-function playRound(humanChoice, computerChoice){
-    // Make it case insensitive
-    console.log(humanChoice+" "+computerChoice)
-    humanChoice = humanChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
-    // Tie scenarios
-    if (humanChoice == computerChoice){
-        return("Tie");
-    } 
-    // Win scenarios
-        else if (((humanChoice=="rock")&&(computerChoice=="scissors"))||((humanChoice=="paper")&&(computerChoice=="rock"))||((humanChoice=="scissors")&&(computerChoice=="paper"))){
-        return("Win");
-    } 
-    // Everything else
-        else {
-        return("Lose");
-    }
-}
-// INPUT one of three choices STEP 3
 function getHumanChoice(){
     return(prompt("Choose Rock, Paper, Scissors: "))
 }
-
-// PC picks one of three random choices STEP 2
-    // Random Number 0-1
-        // Create variable to store random number from 0-1
 function getComputerChoice() {
-    let randNum = Math.random();
+    let randomNum = Math.random();
     let choice="";
-    if (randNum < 0.33) {
+    // Math.random gives random number from 0-1. 1/3 and 2/3 are used to equal choices. 
+    if (randomNum < 1/3) {
         choice="Rock";
-    } else if (randNum < .66) {
+    } else if (randomNum < 2/3) {
         choice="Paper";
     } else {
         choice="Scissors";
     }
     return(choice);
 }
-
+function playRound(humanChoice, computerChoice){
+    humanChoice = humanChoice.toLowerCase();
+    computerChoice = computerChoice.toLowerCase();
+    // Game ties when both choices are equal
+    if (humanChoice == computerChoice){
+        return("Tie");
+    } 
+    // Human wins in the following scenarios
+        else if (((humanChoice=="rock")&&(computerChoice=="scissors"))||((humanChoice=="paper")&&(computerChoice=="rock"))||((humanChoice=="scissors")&&(computerChoice=="paper"))){
+        return("Win");
+    } 
+    // Everything else means the user has lost
+        else {
+        return("Lose");
+    }
+}
 function playGame(){
     let humanScore = 0;
     let computerScore = 0;
-    
     for (let i=0; i<5; i++){
         let humanChoice=getHumanChoice();
         let computerChoice=getComputerChoice()
@@ -74,6 +63,5 @@ function playGame(){
         console.log("You have tied, Try again!")
     }
 }
-playGame();
 
-    // FOR loop for 5 rounds
+playGame();
