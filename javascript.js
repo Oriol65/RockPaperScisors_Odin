@@ -1,41 +1,59 @@
-function getHumanChoice(){
-    return(prompt("Choose Rock, Paper, Scissors: "))
+function getHumanChoice(score){
+    let choice='';
+    const playerRock = document.querySelector('#playerRock');
+    const playerPaper = document.querySelector('#playerPaper');
+    const playerScissors = document.querySelector('#playerScissors');
+    playerRock.onclick=()=> score= playRound('rock', score);
+    playerPaper.onclick=()=> score= playRound('paper', score);
+    playerScissors.onclick=()=> score=playRound('scissors', score);
+    console.log('This is the score in human choice: ' + score);
+    return(score);
 }
 function getComputerChoice() {
     let randomNum = Math.random();
     let choice="";
     // Math.random gives random number from 0-1. 1/3 and 2/3 are used to equal choices. 
     if (randomNum < 1/3) {
-        choice="Rock";
+        choice="rock";
     } else if (randomNum < 2/3) {
-        choice="Paper";
+        choice="paper";
     } else {
-        choice="Scissors";
+        choice="scissors";
     }
     return(choice);
 }
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice,score){
+    let computerChoice = getComputerChoice();
     humanChoice = humanChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
+    let result='';
     // Game ties when both choices are equal
     if (humanChoice == computerChoice){
-        return("Tie");
+        result = 'Tie';
     } 
     // Human wins in the following scenarios
         else if (((humanChoice=="rock")&&(computerChoice=="scissors"))||((humanChoice=="paper")&&(computerChoice=="rock"))||((humanChoice=="scissors")&&(computerChoice=="paper"))){
-        return("Win");
+            result='Win';
+            score ++;
     } 
     // Everything else means the user has lost
         else {
-        return("Lose");
+        result='Lose';
+        score --;
     }
+    console.log(result);
+    console.log(score);
+    return(score);
 }
-function playGame(){
+let score=0;
+score = score+getHumanChoice(score);
+
+/*function playGame(){
     let humanScore = 0;
     let computerScore = 0;
     for (let i=0; i<5; i++){
         let humanChoice=getHumanChoice();
-        let computerChoice=getComputerChoice()
+        console.log(humanChoice);
+        let computerChoice=getComputerChoice();
         let result = playRound(humanChoice, computerChoice);
         console.log(result);
         if (result=="Tie"){
@@ -64,4 +82,4 @@ function playGame(){
     }
 }
 
-playGame();
+playGame();*/
