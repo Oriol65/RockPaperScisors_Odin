@@ -26,12 +26,16 @@ function getComputerChoice() {
 }
 function showScore(score,result,humanChoice,computerChoice){
     //logs results. need new function here to use DOM manipulation
-    console.log('You chose: '+humanChoice+'. Your opponent chose: '+computerChoice)
-    console.log('You '+result);
-    console.log('Your score is: '+score[0]+'. Your opponents score is: '+score[1]);
+    const roundDiv = document.createElement("div");
+    const roundResult = document.createElement("p");
+    roundResult.textContent = "You chose: "+humanChoice +".  Your oponent chose: "+computerChoice+". You "+result;
+    roundDiv.appendChild(roundResult);
+    document.querySelector(".playerChoice").after(roundDiv);
 }
 
 function playRound(humanChoice, score){
+
+    
     let computerChoice = getComputerChoice();
     let result='';
     // Game ties when both choices are equal
@@ -57,9 +61,14 @@ function playRound(humanChoice, score){
     return(score);
 }
 
-
 function playGame(){
 let score=[humanScore=0,computerScore=0];
+    const playerResult = document.createElement("h3");
+    playerResult.textContent= score[0];
+    const computerResult = document.createElement("h3");
+    computerResult.textContent= score[1];
+    document.querySelector("div.player").appendChild(playerResult);
+    document.querySelector("div.computer").appendChild(computerResult);
 console.log(getHumanChoice(score));
 }
 playGame()
