@@ -24,6 +24,13 @@ function getComputerChoice() {
     return(choice);
     //Need to add a change of picture for computer choice
 }
+function showScore(score,result,humanChoice,computerChoice){
+    //logs results. need new function here to use DOM manipulation
+    console.log('You chose: '+humanChoice+'. Your opponent chose: '+computerChoice)
+    console.log('You '+result);
+    console.log('Your score is: '+score[0]+'. Your opponents score is: '+score[1]);
+}
+
 function playRound(humanChoice, score){
     let computerChoice = getComputerChoice();
     let result='';
@@ -32,19 +39,21 @@ function playRound(humanChoice, score){
         result = 'Tie';
     } 
     // Human wins in the following scenarios
-        else if (((humanChoice=="rock")&&(computerChoice=="scissors"))||((humanChoice=="paper")&&(computerChoice=="rock"))||((humanChoice=="scissors")&&(computerChoice=="paper"))){
-            result='Win';
-            score[0] ++;
+    else if (((humanChoice=="rock")&&(computerChoice=="scissors"))||((humanChoice=="paper")&&(computerChoice=="rock"))||((humanChoice=="scissors")&&(computerChoice=="paper"))){
+        result='Win';
+        score[0] ++;
     } 
     // Everything else means the user has lost
         else {
         result='Lose';
         score[1] ++;
     }
-    //logs results. need new function here to use DOM manipulation
-    console.log('You chose: '+humanChoice+'. Your opponent chose: '+computerChoice)
-    console.log('You '+result);
-    console.log('Your score is: '+score[0]+'. Your opponents score is: '+score[1]);
+    showScore(score,result,humanChoice,computerChoice)
+    //Create event score[0]>=3
+    //Event handler => Stop game + show Win message + play again button 
+    //Create event score[1]>=3
+    //Event handler => Stop game + show Lose message + play again button
+    //play again button. -> playGame()
     return(score);
 }
 
