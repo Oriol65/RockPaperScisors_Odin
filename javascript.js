@@ -7,6 +7,19 @@ const playerScissors = document.querySelector('#playerScissors');
 
 const computerPicture = document.querySelector('#computerPicture');
 
+const roundDiv = document.createElement("div");
+const roundResult = document.createElement("p");
+const endDiv = document.createElement("div");
+const endResult = document.createElement("h2");
+const againBttn = document.createElement("button");
+
+roundDiv.appendChild(roundResult);
+document.querySelector(".playerChoice").after(roundDiv); //Need to see if this is where I want it or should I move it? and how to take it out?
+endDiv.appendChild(endResult);
+document.querySelector('.score').appendChild(endDiv);
+document.querySelector('.score').appendChild(againBttn);
+againBttn.classList.add('hidden');
+
 let score=[humanScore = 0,computerScore = 0];
 
 function getHumanChoice(score){
@@ -36,22 +49,17 @@ function gameEnd(score){
     playerPaper.classList.add('hidden');
     playerScissors.classList.add('hidden');
     computerPicture.classList.remove('hidden')
-    
-    //roundDiv.classList.add('hidden')
-    const endDiv = document.createElement("div");
-    const endResult = document.createElement("h2");
-    const againBttn = document.createElement("button");
+    roundDiv.classList.add('hidden')
+
     if (score[0]>score[1]){
         endResult.textContent = "You Won!";
     } else {
         endResult.textContent = "You Lost!";
     }
-
+    againBttn.classList.remove('hidden');
     againBttn.textContent="Try Again?";
     
-    endDiv.appendChild(endResult);
-    document.querySelector('.score').appendChild(endDiv);
-    document.querySelector('.score').appendChild(againBttn);
+
     againBttn.onclick = () => reset();
     //computerPicture.onclick = () => e = reset();
 }
@@ -61,6 +69,9 @@ function reset() {
     playerPaper.classList.remove('hidden');
     playerScissors.classList.remove('hidden');
     computerPicture.classList.remove('hidden')
+    roundResult.textContent='';
+    roundDiv.classList.remove('hidden');
+    againBttn.classList.add('hidden');
     playerScoreDisplay.textContent = 0;
     computerScoreDisplay.textContent = 0;
     getHumanChoice([0,0]);
@@ -92,12 +103,10 @@ function playRound(humanChoice, score){
     return(score);
 }
 function showScore(result,humanChoice,computerChoice){
-    const roundDiv = document.createElement("div");
-    const roundResult = document.createElement("p");
+
 
     roundResult.textContent = "You chose: "+humanChoice +".  Your oponent chose: "+computerChoice+". You "+result;
-    roundDiv.appendChild(roundResult);
-    document.querySelector(".playerChoice").after(roundDiv); //Need to see if this is where I want it or should I move it? and how to take it out?
+
 }
 
 getHumanChoice(score);
