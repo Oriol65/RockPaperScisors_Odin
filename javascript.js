@@ -1,30 +1,29 @@
 const computerScoreDisplay = document.querySelector("#computerScoreDisplay");
 const playerScoreDisplay = document.querySelector("#playerScoreDisplay");
 
-const playerRock = document.querySelector('#playerRock');
-const playerPaper = document.querySelector('#playerPaper');
-const playerScissors = document.querySelector('#playerScissors');
+const playerRock = document.querySelector("#playerRock");
+const playerPaper = document.querySelector("#playerPaper");
+const playerScissors = document.querySelector("#playerScissors");
 
 const roundDiv = document.createElement("div");
 const roundResult = document.createElement("p");
 const endDiv = document.createElement("div");
 const endResult = document.createElement("h2");
 const againBttn = document.createElement("button");
-
+//set => can I use the reset function to do this?
 roundDiv.appendChild(roundResult);
-document.querySelector(".score").after(roundDiv); //Need to see if this is where I want it or should I move it? and how to take it out?
+document.querySelector(".score").after(roundDiv); 
 endDiv.appendChild(endResult);
-document.querySelector('.score').appendChild(endDiv);
-document.querySelector('.score').appendChild(againBttn);
-againBttn.classList.add('hidden');
+document.querySelector(".score").appendChild(endDiv);
+document.querySelector(".score").appendChild(againBttn);
+againBttn.classList.add("hidden");
 
 let score=[humanScore = 0,computerScore = 0];
 
 function getHumanChoice(score){
-
-    playerRock.onclick = () => score = playRound('rock', score);
-    playerPaper.onclick = () => score = playRound('paper', score);
-    playerScissors.onclick = () => score = playRound('scissors', score);
+    playerRock.onclick = () => score = playRound("rock", score);
+    playerPaper.onclick = () => score = playRound("paper", score);
+    playerScissors.onclick = () => score = playRound("scissors", score);
 }
 
 function getComputerChoice() {
@@ -41,30 +40,30 @@ function getComputerChoice() {
 }
 
 function gameEnd(score){
-    playerRock.classList.add('hidden');
-    playerPaper.classList.add('hidden');
-    playerScissors.classList.add('hidden');
-    roundDiv.classList.add('hidden')
+    playerRock.classList.add("hidden");
+    playerPaper.classList.add("hidden");
+    playerScissors.classList.add("hidden");
+    roundDiv.classList.add("hidden");
 
     if (score[0]>score[1]){
         endResult.textContent = "You Won!";
     } else {
         endResult.textContent = "You Lost!";
     }
-    againBttn.classList.remove('hidden');
+    againBttn.classList.remove("hidden");
     againBttn.textContent="Try Again?";
     
     againBttn.onclick = () => reset();
 }
 function reset() {
 
-    playerRock.classList.remove('hidden');
-    playerPaper.classList.remove('hidden');
-    playerScissors.classList.remove('hidden');
-    roundResult.textContent='';
-    roundDiv.classList.remove('hidden');
-    endResult.classList.add('hidden')
-    againBttn.classList.add('hidden');
+    playerRock.classList.remove("hidden");
+    playerPaper.classList.remove("hidden");
+    playerScissors.classList.remove("hidden");
+    roundResult.textContent="";
+    roundDiv.classList.remove("hidden");
+    endResult.classList.add("hidden")
+    againBttn.classList.add("hidden");
     playerScoreDisplay.textContent = 0;
     computerScoreDisplay.textContent = 0;
     getHumanChoice([0,0]);
@@ -72,18 +71,15 @@ function reset() {
 
 function playRound(humanChoice, score){
     let computerChoice = getComputerChoice();
-    let result='';
-
+    let result="";
     if (humanChoice == computerChoice){
-        result = 'Tie';
+        result = "Tie";
     } else if (((humanChoice=="rock")&&(computerChoice=="scissors"))||((humanChoice=="paper")&&(computerChoice=="rock"))||((humanChoice=="scissors")&&(computerChoice=="paper"))){
-        result='Win';
+        result="Win";
         score[0] ++;
-   
     }   else {
-        result='Lose';
+        result="Lose";
         score[1] ++;
-
     }
     playerScoreDisplay.textContent = score[0];
     computerScoreDisplay.textContent = score[1];
@@ -92,14 +88,11 @@ function playRound(humanChoice, score){
     if (score[0]>=3||score[1]>=3){
         gameEnd(score)
     }
-
     return(score);
 }
+
 function showScore(result,humanChoice,computerChoice){
-
-
     roundResult.textContent = "You chose: "+humanChoice +".  Your oponent chose: "+computerChoice+". You "+result;
-
 }
 
 getHumanChoice(score);
