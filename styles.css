@@ -1,16 +1,20 @@
 body {
-    background-color: peachpuff; /*Different color palette?*/
+    background-color: #8ecae6; /*Different color palette?*/
+    color: #023047;
     display: flex;
     flex-direction: column;
 }
 
 .header {
     text-align: center;
-    background-color: blanchedalmond;
+    background-color: #023047;
+    color: #fb8500;
     padding: 15px;
     justify-self: start;  /* How to make it so there is no space at the start and end?*/
 }
-
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .score {
     display:flex;
     flex-direction: column;
@@ -28,13 +32,6 @@ h2 {
     width: 40vw;
 }
 
-.computerChoice {
-    align-self: center;
-}
-
-.computerChoice img{
-    border-radius: 20px;
-}
 
 .playerChoice {
     margin-top: 15px;
@@ -49,10 +46,13 @@ img{
 
 button{
     border-radius: 15px;
+    background-color: #219ebc;
+    color: #ffb703;
 }
 
 .footer {
-    background-color: blanchedalmond;
+    background-color: #023047;
+    color: #fb8500;
     margin-top: 15px;
     padding: 10px;
     text-align: center;
